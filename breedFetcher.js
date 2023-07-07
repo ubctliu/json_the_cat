@@ -5,12 +5,15 @@ const fetchBreedDescription = (breedName, callback) => {
     const data = JSON.parse(body)[0];
     if (error) {
       callback(`Error has occurred! Error code: ${error}`, null);
-    } else
+      return;
+    }
+
     if (data === undefined) {
       callback(`No breeds were found matching ${breedName}, try a different search term?`, null);
-    } else {
-      callback(null, data.description);
+      return;
     }
+
+    callback(null, data.description);
   });
 };
 
